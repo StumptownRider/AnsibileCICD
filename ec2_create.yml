@@ -1,0 +1,14 @@
+
+- name: launch aws ec2 instance
+  hosts: localhost
+  tasks:
+   - name: ec2 instance create
+     ec2:
+        key_name: sl_ansible
+        instance_type: t2.micro
+        image: ami-0279c3b3186e54acd
+        region: us-east-1
+        count: 1
+        wait: yes
+        instance_tags:
+         Name: appWebServer

@@ -1,0 +1,12 @@
+---
+- hosts: [web]
+
+  become: yes
+  become_method: sudo
+  remote_user: ubuntu
+
+  tasks:
+   - name: Copy webapp to webserver
+     copy:
+        src: ~/Webapps/target/bookzyWebApp.war
+        dest: /opt/tomcat/webapps/
