@@ -4,6 +4,9 @@
   tasks:
    - name: ec2 instance create
      ec2:
+        aws_access_key: "{{ my_access_key }}"
+        aws_secret_key: "{{ my_secret_key }}"
+        aws_security_token: "{{ my_security_token }}"
         key_name: sl_ansible
         instance_type: t2.micro
         image: ami-0279c3b3186e54acd
