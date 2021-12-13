@@ -1,5 +1,5 @@
 ---
-- hosts: [web]
+- hosts: all
 
   become: yes
   become_method: sudo
@@ -8,5 +8,5 @@
   tasks:
    - name: Copy webapp to webserver
      copy:
-        src: ~/Webapps/target/bookzyWebApp.war
+        src: ~/bookzyWebApp.war
         dest: /opt/tomcat/webapps/

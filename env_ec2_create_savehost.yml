@@ -1,10 +1,8 @@
-
 - name: launch aws ec2 instance
   hosts: localhost
  
   vars:
      key_name: sl_ansible
-     id: demo
 
   tasks:
   #  - name: Obtain default VPC
@@ -19,7 +17,7 @@
         description: sec group for demo
         #description: "Sec group for "{{ id }}""
         # vpc_id: 12345
-        region: 
+        region: us-east-1
         aws_access_key: "{{ my_access_key }}"
         aws_secret_key: "{{ my_secret_key }}"
         aws_security_token: "{{ my_security_token }}"
@@ -32,7 +30,7 @@
             cidr_ip: 0.0.0.0/0
             rule_desc: allow all on ssh port
      register: result_sec_group
-
+  
    - name: ec2 instance create
      ec2:
         aws_access_key: "{{ my_access_key }}"
@@ -48,6 +46,15 @@
         instance_tags:
          Name: tomcat
      register: ec2
+
+   - name: Add the newly created EC2 instance(s) to the local host group
+     ansible.builtin.lineinfile:
+        path: "hosts.ini"
+        create: yes
+        line: "[web]"
+        insertafter: "[web]" 
+        line: "{{ item.public_ip }} ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/{{ key_name }}.pem ansible_ssh_extra_args='-o StrictHostKeyChecking=no'"
+     with_items: "{{ ec2.instances }}"
 
    - name: Create inventory of hosts to be configured 
      add_host:

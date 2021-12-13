@@ -1,0 +1,7 @@
+- name: package java webapp
+  hosts: localhost
+
+  tasks:
+    - name: maven clean package
+      # command: mvn -f /root/workspace/myproject/pom.xml clean package
+      ansible.builtin.command: mvn -f ~/BookzyApp/pom.xml clean package
