@@ -8,5 +8,5 @@
   tasks:
    - name: Copy webapp to webserver
      copy:
-        src: ~/bookzyWebApp.war
+        src: target/bookzyWebApp.war
         dest: /opt/tomcat/webapps/
