@@ -1,0 +1,7 @@
+- name: print external var
+  hosts: [local]
+
+  tasks:
+    - name: do the thing
+      debug:
+        msg: "{{ env1 }}"
