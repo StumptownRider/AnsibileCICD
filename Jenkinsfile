@@ -12,6 +12,7 @@ pipeline {
                 playbook: 'mvnPkg.yml'
                 )
             }
+        }
         stage('Generate AWS Keypair') {
             steps {
                 ansiblePlaybook(
@@ -20,6 +21,7 @@ pipeline {
                 extras: '-e @aws-secret-vars.yml' 
                 )
             }
+        }
         stage('Launch EC2 Instance') {
             steps {
                 ansiblePlaybook(
@@ -28,6 +30,7 @@ pipeline {
                 extras: '-e @aws-secret-vars.yml' 
                 )
             }
+        }
         stage('Provision Tomcat') {
             steps {
                 ansiblePlaybook(
@@ -35,6 +38,7 @@ pipeline {
                 inventory: 'hosts.ini'
                 )
             }
+        }
         stage('Deploy Application') {
             steps {
                 ansiblePlaybook(
