@@ -14,8 +14,7 @@ pipeline {
         stage('Run playbook') {
             steps {
                 ansiblePlaybook( 
-                playbook: 'ansDebugExample.yml'
-                colorized: true,
+                playbook: 'ansDebugExample.yml',
                 vaultCredentialsId: 'AnsibleVaultPassword',
                 extras: '-e env1=$aws_security_token' 
                 ) 
