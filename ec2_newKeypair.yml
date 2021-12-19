@@ -3,6 +3,7 @@
  
   vars:
      key_name: sl_ansible
+     ansible_python_interpreter: /usr/bin/python3
 
   tasks:
    - name: ec2 create keypair
