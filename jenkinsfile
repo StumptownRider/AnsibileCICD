@@ -19,6 +19,11 @@ pipeline {
                 vaultCredentialsId: 'AnsibleVaultPassword',
                 extras: '-e env1=$aws_security_token' 
                 ) 
+                ansiblePlaybook(
+                playbook: 'ec2_newKeypair.yml',
+                vaultCredentialsId: 'AnsibleVaultPassword',
+                extras: '-e @aws-secret-vars.yml' 
+                )
             }
         }
     }
