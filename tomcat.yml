@@ -10,10 +10,11 @@
     apt:
       upgrade: yes
       update_cache: yes
-      cache_valid_time: 86400 #One day
+      cache_valid_time: 3600 #One day
 
   - name: install JDK 8
     apt:
+      update-cache: yes
       name: openjdk-8-jdk
       state: present
 
