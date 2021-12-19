@@ -21,10 +21,10 @@
         path: keys
         owner: jenkins
         group: jenkins
-        mode: 0755
+        mode: 0700
         state: directory
    - name: Store private key
-     copy: content="{{ ec2_key_result.key.private_key }}" dest="keys/{{ key_name }}.pem" mode=0600
+     copy: content="{{ ec2_key_result.key.private_key }}" dest="keys/{{ key_name }}.pem" mode=0400
      when: ec2_key_result.changed
 
     
