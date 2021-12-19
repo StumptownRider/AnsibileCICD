@@ -6,11 +6,6 @@ pipeline {
         my_security_token = credentials('aws_security_token')
     }
     stages {
-        stage('Checkout SCM') {
-            steps {
-                git branch: 'main', credentialsId: 'StumptownRider-GitHub-PAT', url: 'https://github.com/StumptownRider/AnsibileCICD.git'
-            }
-        }
         stage('Run playbook') {
             steps {
                 ansiblePlaybook( 
